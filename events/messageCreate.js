@@ -16,14 +16,14 @@ module.exports = (client, message) => {
         const roleDJ = message.guild.roles.cache.find(x => x.name === DJ.roleName);
 
         if (roleDJ !== null && roleDJ.id !== null && !message.member._roles.includes(roleDJ.id)) {
-            return message.channel.send({'embed':[{'description': `This command is reserved for members with the ${DJ.roleName} role on the server ${message.author}... try again ? ❌`}]});
+            return message.channel.send({'embed':[{'description': `This command is reserved for members with the \`${DJ.roleName}\` role on the server \`${message.author}\`... try again ? ❌`}]});
         }
     }
 
     if (cmd && cmd.voiceChannel) {
-        if (!message.member.voice.channel) return message.channel.send({'embed':[{'description': `You're not in a voice channel ${message.author}... try again ? ❌`}]});
+        if (!message.member.voice.channel) return message.channel.send({'embed':[{'description': `You're not in a voice channel \`${message.author}\`... try again ? ❌`}]});
 
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.channel.send({'embed':[{'description': `You are not in the same voice channel ${message.author}... try again ? ❌`}]});
+        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.channel.send({'embed':[{'description': `You are not in the same voice channel \`${message.author}\`... try again ? ❌`}]});
     }
 
     if (cmd) cmd.execute(client, message, args);
