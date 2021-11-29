@@ -15,7 +15,7 @@ module.exports = (client, message) => {
     if (cmd && DJ.enabled && DJ.commands.includes(cmd.name)) {
         const roleDJ = message.guild.roles.cache.find(x => x.name === DJ.roleName);
 
-        if (roleDJ !== null && roleDJ.id !== null && !message.member._roles.includes(roleDJ.id)) {
+        if (roleDJ !== undefined && roleDJ.id !== undefined && !message.member._roles.includes(roleDJ.id)) {
             return message.channel.send({'embeds':[{'description': `This command is reserved for members with the \`${DJ.roleName}\` role on the server \`${message.author}\`... try again ? ❌`}]});
         }
     }
