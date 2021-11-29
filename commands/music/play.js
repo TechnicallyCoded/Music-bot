@@ -7,14 +7,14 @@ module.exports = {
     voiceChannel: true,
 
     async execute(client, message, args) {
-        if (!args[0]) return message.channel.send({'content':'.','embed':[{'description': `Please enter a valid search ${message.author}... try again ? ❌`}]});
+        if (!args[0]) return message.channel.send({'embeds':[{'description': `Please enter a valid search ${message.author}... try again ? ❌`}]});
 
         const res = await player.search(args.join(' '), {
             requestedBy: message.member,
             searchEngine: QueryType.AUTO
         });
 
-        if (!res || !res.tracks.length) return message.channel.send({'content':'.','embed':[{'description': `No results found ${message.author}... try again ? ❌`}]});
+        if (!res || !res.tracks.length) return message.channel.send({'embeds':[{'description': `No results found ${message.author}... try again ? ❌`}]});
 
         const queue = await player.createQueue(message.guild, {
             metadata: message.channel
@@ -24,10 +24,10 @@ module.exports = {
             if (!queue.connection) await queue.connect(message.member.voice.channel);
         } catch {
             await player.deleteQueue(message.guild.id);
-            return message.channel.send({'content':'.','embed':[{'description': `I can't join the voice channel ${message.author}... try again ? ❌`}]});
+            return message.channel.send({'embeds':[{'description': `I can't join the voice channel ${message.author}... try again ? ❌`}]});
         }
 
-        await message.channel.send({'content':'.','embed':[{'description': `Loading your ${res.playlist ? 'playlist' : 'track'}... 🎧`}]});
+        await message.channel.send({'embeds':[{'description': `Loading your ${res.playlist ? 'playlist' : 'track'}... 🎧`}]});
 
         res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
 

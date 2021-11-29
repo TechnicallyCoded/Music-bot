@@ -7,11 +7,11 @@ module.exports = {
     async execute(client, message, args) {
         const queue = player.getQueue(message.guild.id);
 
-        if (!queue || !queue.playing) return message.channel.send({'content':'.','embed':[{'description': `No music currently playing ${message.author}... try again ? ❌`}]});
+        if (!queue || !queue.playing) return message.channel.send({'embeds':[{'description': `No music currently playing ${message.author}... try again ? ❌`}]});
 
         const actualFilter = queue.getFiltersEnabled()[0];
 
-        if (!args[0]) return message.channel.send({'content':'.','embed':[{'description': `Please specify a valid filter to enable or disable ${message.author}... try again ? ❌\n${actualFilter ? `Filter currently active ${actualFilter} (${client.config.app.px}filter ${actualFilter} to disable it).\n` : ''}`}]});
+        if (!args[0]) return message.channel.send({'embeds':[{'description': `Please specify a valid filter to enable or disable ${message.author}... try again ? ❌\n${actualFilter ? `Filter currently active ${actualFilter} (${client.config.app.px}filter ${actualFilter} to disable it).\n` : ''}`}]});
 
         const filters = [];
 
@@ -20,7 +20,7 @@ module.exports = {
 
         const filter = filters.find((x) => x.toLowerCase() === args[0].toLowerCase());
 
-        if (!filter) return message.channel.send({'content':'.','embed':[{'description': `This filter doesn't exist ${message.author}... try again ? ❌\n${actualFilter ? `Filter currently active ${actualFilter}.\n` : ''}List of available filters ${filters.map(x => `**${x}**`).join(', ')}.`}]});
+        if (!filter) return message.channel.send({'embeds':[{'description': `This filter doesn't exist ${message.author}... try again ? ❌\n${actualFilter ? `Filter currently active ${actualFilter}.\n` : ''}List of available filters ${filters.map(x => `**${x}**`).join(', ')}.`}]});
 
         const filtersUpdated = {};
 
@@ -28,6 +28,6 @@ module.exports = {
 
         await queue.setFilters(filtersUpdated);
 
-        message.channel.send({'content':'.','embed':[{'description': `The filter ${filter} is now **${queue.getFiltersEnabled().includes(filter) ? 'enabled' : 'disabled'}** ✅\n*Reminder the longer the music is, the longer this will take.*`}]});
+        message.channel.send({'embeds':[{'description': `The filter ${filter} is now **${queue.getFiltersEnabled().includes(filter) ? 'enabled' : 'disabled'}** ✅\n*Reminder the longer the music is, the longer this will take.*`}]});
     },
 };
