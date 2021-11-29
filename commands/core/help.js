@@ -16,9 +16,9 @@ module.exports = {
 
         embed.setDescription(`Enabled Commands - ${commands.size}`);
         for (const cmd of commands) {
-            embed.addField(cmd.name, `[${x.aliases[0] ? ` (${x.aliases.map(y => y).join(', ')})\`` : '\`'}]`, true)
+            embed.addField(cmd.name, `[${cmd.aliases[0] ? `(${cmd.aliases.map(y => y).join(', ')})` : ''}]`, true)
         }
-        
+
         // todo: remove 
         // embed.addField(, commands.map(x => `\`${x.name}${x.aliases[0] ? ` (${x.aliases.map(y => y).join(', ')})\`` : '\`'}`).join(' | '));
 
