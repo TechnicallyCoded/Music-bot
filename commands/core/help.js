@@ -18,7 +18,7 @@ module.exports = {
         for (const tmpCmd of commands) {
             const cmd = tmpCmd[1];
 
-            let cmdAliases;
+            let cmdAliases = ' ';
             if (cmd.aliases && cmd.aliases.length > 0) {
                 const aliasesStr = cmd.aliases.map(y => y).join(', ');
                 cmdAliases = cmd.aliases[0] ? aliasesStr : '';
