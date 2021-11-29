@@ -16,6 +16,9 @@ module.exports = {
 
         embed.setDescription(`Enabled Commands - ${commands.size}`);
         for (const cmd of commands) {
+
+            console.log(cmd);
+
             let cmdAliases;
             if (cmd.aliases && cmd.aliases.length > 0) {
                 const aliasesStr = cmd.aliases.map(y => y).join(', ');
