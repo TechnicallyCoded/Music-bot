@@ -16,7 +16,12 @@ module.exports = {
 
         embed.setDescription(`Enabled Commands - ${commands.size}`);
         for (const cmd of commands) {
-            embed.addField(cmd.name, `[${cmd.aliases[0] ? `(${cmd.aliases.map(y => y).join(', ')})` : ''}]`, true)
+            let cmdAliases;
+            if (cmd.aliases && cmd.aliases.length > 0) {
+                const aliasesStr = cmd.aliases.map(y => y).join(', ');
+                cmdAliases = cmd.aliases[0] ? `(${aliasesStr})` : '';
+            }
+            embed.addField(cmd.name, `[${cmdAliases}]`, true);
         }
 
         // todo: remove 
