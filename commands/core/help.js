@@ -15,15 +15,15 @@ module.exports = {
         const commands = client.commands.filter(x => x.showHelp !== false);
 
         embed.setDescription(`Enabled Commands - ${commands.size}`);
-        for (const cmd of commands) {
-
-            console.log(cmd);
+        for (const tmpCmd of commands) {
+            const cmd = tmpCmd[1];
 
             let cmdAliases;
             if (cmd.aliases && cmd.aliases.length > 0) {
                 const aliasesStr = cmd.aliases.map(y => y).join(', ');
                 cmdAliases = cmd.aliases[0] ? `(${aliasesStr})` : '';
             }
+            
             embed.addField(cmd.name, `[${cmdAliases}]`, true);
         }
 
