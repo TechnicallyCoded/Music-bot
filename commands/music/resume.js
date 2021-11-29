@@ -7,7 +7,7 @@ module.exports = {
     execute(client, message) {
         const queue = player.getQueue(message.guild.id);
 
-        if (!queue) return message.channel.send(`No music currently playing ${message.author}... try again ? ❌`);
+        if (!queue) return message.channel.send({'embed':[{'description': `No music currently playing ${message.author}... try again ? ❌`}]});
 
         const success = queue.setPaused(false);
 
