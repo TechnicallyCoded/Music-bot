@@ -8,11 +8,11 @@ player.on('connectionError', (queue, error) => {
 
 player.on('trackStart', (queue, track) => {
     if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;
-    queue.metadata.send({'content':' ','embed':[{'description': `Started playing ${track.title} in **${queue.connection.channel.name}** 🎧`}]});
+    queue.metadata.send({'content':'.','embed':[{'description': `Started playing ${track.title} in **${queue.connection.channel.name}** 🎧`}]});
 });
 
 player.on('trackAdd', (queue, track) => {
-    queue.metadata.send({'content':' ','embed':[{'description': `Track ${track.title} added in the queue ✅`}]});
+    queue.metadata.send({'content':'.','embed':[{'description': `Track ${track.title} added in the queue ✅`}]});
 });
 
 player.on('botDisconnect', (queue) => {

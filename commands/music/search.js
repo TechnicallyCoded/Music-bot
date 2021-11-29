@@ -8,14 +8,14 @@ module.exports = {
     voiceChannel: true,
 
     async execute(client, message, args) {
-        if (!args[0]) return message.channel.send({'content':' ','embed':[{'description': `Please enter a valid search ${message.author}... try again ? ❌`}]});
+        if (!args[0]) return message.channel.send({'content':'.','embed':[{'description': `Please enter a valid search ${message.author}... try again ? ❌`}]});
 
         const res = await player.search(args.join(' '), {
             requestedBy: message.member,
             searchEngine: QueryType.AUTO
         });
 
-        if (!res || !res.tracks.length) return message.channel.send({'content':' ','embed':[{'description': `No results found ${message.author}... try again ? ❌`}]});
+        if (!res || !res.tracks.length) return message.channel.send({'content':'.','embed':[{'description': `No results found ${message.author}... try again ? ❌`}]});
 
         const queue = await player.createQueue(message.guild, {
             metadata: message.channel
@@ -42,11 +42,11 @@ module.exports = {
         });
 
         collector.on('collect', async (query) => {
-            if (query.content.toLowerCase() === 'cancel') return message.channel.send({'content':' ','embed':[{'description': `Search cancelled ✅`}]}) && collector.stop();
+            if (query.content.toLowerCase() === 'cancel') return message.channel.send({'content':'.','embed':[{'description': `Search cancelled ✅`}]}) && collector.stop();
 
             const value = parseInt(query.content);
 
-            if (!value || value <= 0 || value > maxTracks.length) return message.channel.send({'content':' ','embed':[{'description': `Invalid response, try a value between **1** and **${maxTracks.length}** or **cancel**... try again ? ❌`}]});
+            if (!value || value <= 0 || value > maxTracks.length) return message.channel.send({'content':'.','embed':[{'description': `Invalid response, try a value between **1** and **${maxTracks.length}** or **cancel**... try again ? ❌`}]});
 
             collector.stop();
 
@@ -54,10 +54,10 @@ module.exports = {
                 if (!queue.connection) await queue.connect(message.member.voice.channel);
             } catch {
                 await player.deleteQueue(message.guild.id);
-                return message.channel.send({'content':' ','embed':[{'description': `I can't join the voice channel ${message.author}... try again ? ❌`}]});
+                return message.channel.send({'content':'.','embed':[{'description': `I can't join the voice channel ${message.author}... try again ? ❌`}]});
             }
 
-            await message.channel.send({'content':' ','embed':[{'description': `Loading your search... 🎧`}]});
+            await message.channel.send({'content':'.','embed':[{'description': `Loading your search... 🎧`}]});
 
             queue.addTrack(res.tracks[query.content - 1]);
 
@@ -65,7 +65,7 @@ module.exports = {
         });
 
         collector.on('end', (msg, reason) => {
-            if (reason === 'time') return message.channel.send({'content':' ','embed':[{'description': `Search timed out ${message.author}... try again ? ❌`}]});
+            if (reason === 'time') return message.channel.send({'content':'.','embed':[{'description': `Search timed out ${message.author}... try again ? ❌`}]});
         });
     },
 };
