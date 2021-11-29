@@ -7,12 +7,12 @@ module.exports = {
     execute(client, message) {
         const queue = player.getQueue(message.guild.id);
 
-        if (!queue || !queue.playing) return message.channel.send({'embed':[{'description': `No music currently playing ${message.author}... try again ? ❌`}]});
+        if (!queue || !queue.playing) return message.channel.send({'content':' ','embed':[{'description': `No music currently playing ${message.author}... try again ? ❌`}]});
 
         const success = queue.skip();
 
         return message.channel.send(success ? 
-            {'embed':[{'description': `Current music ${queue.current.title} skipped ✅`}]} : 
-            {'embed':[{'description': `Something went wrong ${message.author}... try again ? ❌`}]});
+            {'content':' ','embed':[{'description': `Current music ${queue.current.title} skipped ✅`}]} : 
+            {'content':' ','embed':[{'description': `Something went wrong ${message.author}... try again ? ❌`}]});
     },
 };
