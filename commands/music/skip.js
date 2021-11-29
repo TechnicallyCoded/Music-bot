@@ -11,6 +11,8 @@ module.exports = {
 
         const success = queue.skip();
 
-        return message.channel.send(success ? `Current music ${queue.current.title} skipped ✅` : `Something went wrong ${message.author}... try again ? ❌`);
+        return message.channel.send(success ? 
+            {'embed':[{'description': `Current music ${queue.current.title} skipped ✅`}]} : 
+            {'embed':[{'description': `Something went wrong ${message.author}... try again ? ❌`}]});
     },
 };

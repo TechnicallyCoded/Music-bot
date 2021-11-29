@@ -21,6 +21,8 @@ module.exports = {
 
         const success = queue.setVolume(vol);
 
-        return message.channel.send(success ? `The volume has been modified to **${vol}**/**${maxVol}**% 🔊` : `Something went wrong ${message.author}... try again ? ❌`);
+        return message.channel.send(success ? 
+            {'embed':[{'description': `The volume has been modified to **${vol}**/**${maxVol}**% 🔊`}]} : 
+            {'embed':[{'description': `Something went wrong ${message.author}... try again ? ❌`}]});
     },
 };

@@ -11,6 +11,8 @@ module.exports = {
 
         const success = queue.setPaused(true);
 
-        return message.channel.send(success ? `Current music ${queue.current.title} paused ✅` : `Something went wrong ${message.author}... try again ? ❌`);
+        return message.channel.send(success ? 
+            {'embed':[{'description': `Current music ${queue.current.title} paused ✅`}]} : 
+            {'embed':[{'description': `Something went wrong ${message.author}... try again ? ❌`}]});
     },
 };

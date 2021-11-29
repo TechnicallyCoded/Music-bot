@@ -42,7 +42,7 @@ module.exports = {
         });
 
         collector.on('collect', async (query) => {
-            if (query.content.toLowerCase() === 'cancel') return message.channel.send({'embed':[{'description': `Search cancelled ✅`) && collector.stop(}]});
+            if (query.content.toLowerCase() === 'cancel') return message.channel.send({'embed':[{'description': `Search cancelled ✅`}]}) && collector.stop();
 
             const value = parseInt(query.content);
 
